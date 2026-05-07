@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+<<<<<<< HEAD
     absence.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -22,6 +23,13 @@ HEADERS += \
     section.h \
     student.h \
     studentmanager.h
+=======
+    main.cpp \
+    mainwindow.cpp
+
+HEADERS += \
+    mainwindow.h
+>>>>>>> f4a400308165d323026fd06ebe84767d2b726c62
 
 TRANSLATIONS += \
     S201_fr_FR.ts
