@@ -12,4 +12,7 @@ enum class Section
     MMI_BUT_3,
 };
 
+QString sectionToString(Section section);
+Section sectionFromString(const QString &str);
+
 #endif // SECTION_H
