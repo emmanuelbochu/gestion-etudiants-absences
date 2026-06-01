@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,32 +9,19 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-<<<<<<< HEAD \
-    absence.cpp \
-    section.cpp \
-    student.cpp \
-    xmlmanager.cpp
     absence.cpp \
     main.cpp \
     mainwindow.cpp \
     section.cpp \
     student.cpp \
-    studentmanager.cpp
+    xmlmanager.cpp
 
 HEADERS += \
     absence.h \
     mainwindow.h \
     section.h \
     student.h \
-    studentmanager.h \
     xmlmanager.h
-=======
-    main.cpp \
-    mainwindow.cpp
-
-HEADERS += \
-    mainwindow.h
->>>>>>> f4a400308165d323026fd06ebe84767d2b726c62
 
 TRANSLATIONS += \
     S201_fr_FR.ts
@@ -45,4 +32,3 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-QT += xml
