@@ -11,56 +11,55 @@
 class Student
 {
 private:
+    int studentId;
     QString lastName;
     QString firstName;
-    QDate birthDate;
-    QString studentID;
-    QString ine;
     QString phoneNumber;
-    QString schoolEmail;
+    QString amuEmail;
     QString personalEmail;
-    QString address;         // Corrigé (deux 'd')
-    QString parentsAddress;  // Corrigé
-    QString photoId;
+    QString personalAddress;
+    QString parentsAddress;
+    QString photoPath;
+    QString ineNumber;
+    QDate birthDate;
     Section section;
     QList<Absence> absences;
 
 public:
-    // Constructeurs
-    Student();
-    Student(const QString &lastName, const QString &firstName, const QString &studentID);
+    Student(int studentId, const QString &lastName, const QString &firstName, const QString &phoneNumber, const QString &amuEmail, const QString &personalEmail, const QString &personalAddress, const QString &parentsAddress, const QString &photoPath, const QString &ineNumber, const QDate &birthDate, Section section);
+    ~Student();
 
     // Getters
+    int getStudentId() const;
     QString getLastName() const;
     QString getFirstName() const;
-    QDate getBirthDate() const;
-    QString getStudentID() const;
-    QString getIne() const;
     QString getPhoneNumber() const;
-    QString getSchoolEmail() const;
+    QString getAmuEmail() const;
     QString getPersonalEmail() const;
-    QString getAddress() const;
+    QString getPersonalAddress() const;
     QString getParentsAddress() const;
-    QString getPhotoId() const;
+    QString getPhotoPath() const;
+    QString getIneNumber() const;
+    QDate getBirthDate() const;
     Section getSection() const;
     QList<Absence> getAbsences() const;
 
     // Setters
-    void setLastName(const QString &value);
-    void setFirstName(const QString &value);
-    void setBirthDate(const QDate &value);
-    void setStudentID(const QString &value);
-    void setIne(const QString &value);
-    void setPhoneNumber(const QString &value);
-    void setSchoolEmail(const QString &value);
-    void setPersonalEmail(const QString &value);
-    void setAddress(const QString &value);
-    void setParentsAddress(const QString &value);
-    void setPhotoId(const QString &value);
-    void setSection(const Section &value);
-    void setAbsences(const QList<Absence> &value);
+    void setStudentId(int studentId);
+    void setLastName(const QString &lastName);
+    void setFirstName(const QString &firstName);
+    void setPhoneNumber(const QString &phoneNumber);
+    void setAmuEmail(const QString &amuEmail);
+    void setPersonalEmail(const QString &personalEmail);
+    void setPersonalAddress(const QString &personalAddress);
+    void setParentsAddress(const QString &parentsAddress);
+    void setPhotoPath(const QString &photoPath);
+    void setIneNumber(const QString &ineNumber);
+    void setBirthDate(const QDate &birthDate);
+    void setSection(Section section);
+    void setAbsences(const QList<Absence> &absences);
 
-    // Fonctions utilitaires pour le sous-formulaire du DetailWidget
+    // Méthodes de gestion des absences
     void addAbsence(const Absence &absence);
     void removeAbsence(int index);
 };

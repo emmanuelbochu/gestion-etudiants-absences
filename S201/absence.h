@@ -1,25 +1,30 @@
 #ifndef ABSENCE_H
 #define ABSENCE_H
 
+#include <QDate>
+#include <QString>
+
 class Absence
 {
-private :
-    QDate absDate;
+private:
+    QDate date;
     bool isJustified;
     QString reason;
+
 public:
-    Absence();
-    Absence(const QDate &date, bool justified, const QString &reason);
+    // Constructeur et Destructeur
+    Absence(const QDate &date, bool isJustified, const QString &reason);
+    ~Absence();
 
     // Getters
     QDate getDate() const;
-    bool isJustified() const;
+    bool getIsJustified() const;
     QString getReason() const;
 
     // Setters
-    void setDate(const QDate &value);
-    void setJustified(bool value);
-    void setReason(const QString &value);
+    void setDate(const QDate &date);
+    void setIsJustified(bool isJustified);
+    void setReason(const QString &reason);
 };
 
 #endif // ABSENCE_H
