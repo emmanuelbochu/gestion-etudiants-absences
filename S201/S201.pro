@@ -9,18 +9,19 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    XmlManager.cpp \
     absence.cpp \
     main.cpp \
     mainwindow.cpp \
     section.cpp \
-    student.cpp
+    student.cpp \
+    xmlmanager.cpp
 
 HEADERS += \
     absence.h \
     mainwindow.h \
     section.h \
-    student.h
+    student.h \
+    xmlmanager.h
 
 TRANSLATIONS += \
     S201_fr_FR.ts
