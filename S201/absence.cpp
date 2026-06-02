@@ -1,5 +1,6 @@
 #include "absence.h"
 
+
 Absence::Absence() {
     date = QDate::currentDate(); // Par défaut, date du jour
     justified = false;

@@ -1,4 +1,4 @@
-#include "xmlmanager.h"
+#include "x.h"
 #include <QFile>
 #include <QDomDocument>
 #include <QTextStream>
