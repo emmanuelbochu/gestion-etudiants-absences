@@ -4,33 +4,22 @@
 #include <QMainWindow>
 #include <QList>
 #include <QListWidget>
-#include "student.h"
-#include "detailwidget.h"
+#include <QLineEdit>
+#include <QMenuBar>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QSplitter>
+#include <QCloseEvent>
+#include <QVBoxLayout>
+#include <QFormLayout>
+#include <QDateEdit>
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:
-    QList<Student> studentList;
-    QString currentFilePath;
 
-    QListWidget *temporaryMasterList;
-    DetailWidget *detailWidget;
 
-    QMenu *fileMenu;
-    QAction *openXmlAction;
-    QAction *saveXmlAction;
-    QAction *saveAsXmlAction;
-    QAction *exitAction;
-
-    void createMenusAndActions();
-    void updateMasterList();
-
-private slots:
-    void onOpenXmlTriggered();
-    void onSaveXmlTriggered();
-    void onSaveAsXmlTriggered();
-    void onMasterSelectionChanged();
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
