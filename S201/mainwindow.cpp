@@ -3,17 +3,14 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    // Menu "File"
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
 
-    // Actions
     QAction *openJsonAction = new QAction(tr("Open JSON"), this);
     QAction *openXmlAction  = new QAction(tr("Open XML"), this);
     QAction *saveAction     = new QAction(tr("Save"), this);
     QAction *saveAsAction   = new QAction(tr("Save As"), this);
     QAction *quitAction     = new QAction(tr("Quit"), this);
 
-    // Ajout des actions au menu
     fileMenu->addAction(openJsonAction);
     fileMenu->addAction(openXmlAction);
     fileMenu->addSeparator();
@@ -22,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent)
     fileMenu->addSeparator();
     fileMenu->addAction(quitAction);
 
-    // Connexion Quit
     connect(quitAction, &QAction::triggered, this, &QMainWindow::close);
 
     QSplitter *splitter = new QSplitter(this);
@@ -37,8 +33,8 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout *layoutMaster = new QVBoxLayout();
     master->setLayout(layoutMaster);
 
-    QLineEdit *filtre = new QLineEdit();
-    QListWidget *liste = new QListWidget();
+    filtre = new QLineEdit();
+    liste = new QListWidget();
 
     layoutMaster->addWidget(filtre);
     layoutMaster->addWidget(liste);
@@ -46,11 +42,31 @@ MainWindow::MainWindow(QWidget *parent)
     QFormLayout *layoutDetail = new QFormLayout();
     detail->setLayout(layoutDetail);
 
-    QLineEdit *lastName = new QLineEdit();
-    QDateEdit *date = new QDateEdit();
+    lastName = new QLineEdit();
+    firstName = new QLineEdit();
+    birthDate = new QDateEdit();
+    studentId = new QLineEdit();
+    ineNumber = new QLineEdit();
+    phoneNumber = new QLineEdit();
+    amuEmail = new QLineEdit();
+    personalEmail = new QLineEdit();
+    personalAddress = new QLineEdit();
+    parentAddress = new QLineEdit();
+    photoPath = new QLabel();
+    section = new QComboBox();
 
     layoutDetail->addRow(tr("LastName :"), lastName);
-    layoutDetail->addRow(tr("Date :"), date);
+    layoutDetail->addRow(tr("FirstName :"), firstName);
+    layoutDetail->addRow(tr("BirthDate :"), birthDate);
+    layoutDetail->addRow(tr("StudentId :"), studentId);
+    layoutDetail->addRow(tr("IneNumber :"), ineNumber);
+    layoutDetail->addRow(tr("PhoneNumber :"), phoneNumber);
+    layoutDetail->addRow(tr("AmuEmail :"), amuEmail);
+    layoutDetail->addRow(tr("PersonalEmail :"), personalEmail);
+    layoutDetail->addRow(tr("PersonalAddress :"), personalAddress);
+    layoutDetail->addRow(tr("ParentAddress :"), parentAddress);
+    layoutDetail->addRow(tr("PhotoPath :"), photoPath);
+    layoutDetail->addRow(tr("Section :"), section);
 }
 
 MainWindow::~MainWindow()

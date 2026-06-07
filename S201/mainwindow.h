@@ -13,11 +13,27 @@
 #include <QVBoxLayout>
 #include <QFormLayout>
 #include <QDateEdit>
+#include <QComboBox>
+#include <QLabel>
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:
+    QLineEdit *filtre;
+    QListWidget *liste;
+    QLineEdit *lastName;
+    QLineEdit *firstName;
+    QDateEdit *birthDate;
+    QLineEdit *studentId;
+    QLineEdit *ineNumber;
+    QLineEdit *phoneNumber;
+    QLineEdit *amuEmail;
+    QLineEdit *personalEmail;
+    QLineEdit *personalAddress;
+    QLineEdit *parentAddress;
+    QLabel *photoPath;
+    QComboBox *section;
 
 
 public:
