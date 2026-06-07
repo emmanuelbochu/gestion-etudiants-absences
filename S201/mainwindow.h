@@ -15,6 +15,9 @@
 #include <QDateEdit>
 #include <QComboBox>
 #include <QLabel>
+#include <QString>
+
+#include "studentmanager.h"
 
 class MainWindow : public QMainWindow
 {
@@ -35,6 +38,31 @@ private:
     QLabel *photoPath;
     QComboBox *section;
 
+    StudentManager studentManager;
+    int currentIndex;
+
+    void setupConnections();
+    void populateMasterList();
+    void populateDetailForm(int index);
+    void clearDetailForm();
+    bool checkUnsavedChanges();
+    void closeEvent(QCloseEvent* event) override;
+    void retranslateUi();
+
+private slots:
+    void onOpenJson();
+    void onOpenXml();
+    void onSave();
+    void onSaveAs();
+    void onStudentSelected(int index);
+    void onFilterChanged(QString text);
+    void onAddStudent();
+    void onDeleteStudent();
+    void onSaveStudent();
+    void onAddAbsence();
+    void onEditAbsence(int index);
+    void onDeleteAbsence(int index);
+    void onLoadPhoto();
 
 public:
     MainWindow(QWidget *parent = nullptr);
