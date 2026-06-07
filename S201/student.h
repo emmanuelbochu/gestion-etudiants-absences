@@ -4,64 +4,79 @@
 #include <QString>
 #include <QDate>
 #include <QList>
-
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QDomDocument>
+#include <QDomElement>
 #include "section.h"
 #include "absence.h"
 
 class Student
 {
 private:
-    int studentId;
     QString lastName;
     QString firstName;
+    QDate birthDate;
+    QString studentId;
+    QString ineNumber;
     QString phoneNumber;
     QString amuEmail;
     QString personalEmail;
     QString personalAddress;
-    QString parentsAddress;
+    QString parentAddress;
     QString photoPath;
-    QString ineNumber;
-    QDate birthDate;
     Section section;
     QList<Absence> absences;
 
 public:
-    Student(int studentId, const QString &lastName, const QString &firstName, const QString &phoneNumber, const QString &amuEmail, const QString &personalEmail, const QString &personalAddress, const QString &parentsAddress, const QString &photoPath, const QString &ineNumber, const QDate &birthDate, Section section);
-    ~Student();
+    // Constructeurs
+    Student();
+    Student(QString lastName, QString firstName, QString studentId);
 
     // Getters
-    int getStudentId() const;
     QString getLastName() const;
     QString getFirstName() const;
+    QDate getBirthDate() const;
+    QString getStudentId() const;
+    QString getIneNumber() const;
     QString getPhoneNumber() const;
     QString getAmuEmail() const;
     QString getPersonalEmail() const;
     QString getPersonalAddress() const;
-    QString getParentsAddress() const;
+    QString getParentAddress() const;
     QString getPhotoPath() const;
-    QString getIneNumber() const;
-    QDate getBirthDate() const;
     Section getSection() const;
     QList<Absence> getAbsences() const;
 
     // Setters
-    void setStudentId(int studentId);
-    void setLastName(const QString &lastName);
-    void setFirstName(const QString &firstName);
-    void setPhoneNumber(const QString &phoneNumber);
-    void setAmuEmail(const QString &amuEmail);
-    void setPersonalEmail(const QString &personalEmail);
-    void setPersonalAddress(const QString &personalAddress);
-    void setParentsAddress(const QString &parentsAddress);
-    void setPhotoPath(const QString &photoPath);
-    void setIneNumber(const QString &ineNumber);
-    void setBirthDate(const QDate &birthDate);
-    void setSection(Section section);
-    void setAbsences(const QList<Absence> &absences);
+    void setLastName(QString v);
+    void setFirstName(QString v);
+    void setBirthDate(QDate v);
+    void setStudentId(QString v);
+    void setIneNumber(QString v);
+    void setPhoneNumber(QString v);
+    void setAmuEmail(QString v);
+    void setPersonalEmail(QString v);
+    void setPersonalAddress(QString v);
+    void setParentAddress(QString v);
+    void setPhotoPath(QString v);
+    void setSection(Section v);
 
-    // Méthodes de gestion des absences
-    void addAbsence(const Absence &absence);
+    // Gestion des absences
+    void addAbsence(Absence a);
     void removeAbsence(int index);
+    void editAbsence(int index, Absence a);
+
+    // Nom d'affichage pour la liste Master (Nom Prénom)
+    QString getDisplayName() const;
+
+    // Sérialisation JSON et XML
+    QJsonObject toJson() const;
+    QDomElement toXml(QDomDocument &doc) const;
+
+    // Désérialisation
+    static Student fromJson(const QJsonObject &obj);
+    static Student fromXml(const QDomElement &elem);
 };
 
 #endif // STUDENT_H

@@ -5,9 +5,9 @@
 
 enum class Section
 {
-    Info_BUT_1,
-    Info_BUT_2,
-    Info_BUT_3,
+    INFO_BUT_1,
+    INFO_BUT_2,
+    INFO_BUT_3,
     MMI_BUT_1,
     MMI_BUT_2,
     MMI_BUT_3

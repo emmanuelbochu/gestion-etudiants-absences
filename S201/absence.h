@@ -3,28 +3,39 @@
 
 #include <QDate>
 #include <QString>
+#include <QJsonObject>
+#include <QDomDocument>
+#include <QDomElement>
 
 class Absence
 {
 private:
-    QDate date;
-    bool isJustified;
-    QString reason;
+    QDate date;         // Date de l'absence
+    bool justified;     // Statut de justification (true = justifiée)
+    QString reason;     // Motif de l'absence
 
 public:
-    // Constructeur et Destructeur
-    Absence(const QDate &date, bool isJustified, const QString &reason);
-    ~Absence();
+    // Constructeurs
+    Absence();
+    Absence(QDate date, bool justified, QString reason);
 
     // Getters
     QDate getDate() const;
-    bool getIsJustified() const;
+    bool isJustified() const;
     QString getReason() const;
 
     // Setters
-    void setDate(const QDate &date);
-    void setIsJustified(bool isJustified);
-    void setReason(const QString &reason);
+    void setDate(QDate date);
+    void setJustified(bool justified);
+    void setReason(QString reason);
+
+    // Sérialisation JSON et XML (Exigences de la Partie 1)
+    QJsonObject toJson() const;
+    QDomElement toXml(QDomDocument &doc) const;
+
+    // Désérialisation (Méthodes statiques retournant un objet Absence)
+    static Absence fromJson(const QJsonObject &obj);
+    static Absence fromXml(const QDomElement &elem);
 };
 
 #endif // ABSENCE_H
