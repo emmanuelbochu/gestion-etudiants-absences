@@ -56,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent)
     photoPath = new QLabel();
     section = new QComboBox();
     section->addItems({"Info BUT 1", "Info BUT 2", "Info BUT 3", "MMI BUT 1", "MMI BUT 2", "MMI BUT 3"});
+    btnSaveStudent = new QPushButton(tr("Sauvegarder"));
 
     layoutDetail->addRow(tr("LastName :"), lastName);
     layoutDetail->addRow(tr("FirstName :"), firstName);
@@ -69,6 +70,7 @@ MainWindow::MainWindow(QWidget *parent)
     layoutDetail->addRow(tr("ParentAddress :"), parentAddress);
     layoutDetail->addRow(tr("PhotoPath :"), photoPath);
     layoutDetail->addRow(tr("Section :"), section);
+    layoutDetail->addRow(btnSaveStudent);
 
     studentManager.populateWithDefaultTestData();
     populateMasterList();
@@ -95,6 +97,7 @@ void MainWindow::populateMasterList()
 void MainWindow::setupConnections()
 {
     connect(liste, &QListWidget::currentRowChanged, this, &MainWindow::onStudentSelected);
+    connect(btnSaveStudent, &QPushButton::clicked, this, &MainWindow::onSaveStudent);
 }
 
 void MainWindow::populateDetailForm(int index)
@@ -113,19 +116,6 @@ void MainWindow::populateDetailForm(int index)
     photoPath->setText(s.getPhotoPath());
     section->setCurrentText(sectionToString(s.getSection()));
 
-    lastName->setReadOnly(true);
-    firstName->setReadOnly(true);
-    birthDate->setReadOnly(true);
-    studentId->setReadOnly(true);
-    ineNumber->setReadOnly(true);
-    phoneNumber->setReadOnly(true);
-    amuEmail->setReadOnly(true);
-    personalEmail->setReadOnly(true);
-    personalAddress->setReadOnly(true);
-    parentAddress->setReadOnly(true);
-
-    section->setEnabled(false);
-
 }
 
 void MainWindow::clearDetailForm()
@@ -133,14 +123,34 @@ void MainWindow::clearDetailForm()
 }
 
 bool MainWindow::checkUnsavedChanges()
-{
-    return false;
-}
+    {
+        if (!studentManager.isModified()) {
+            return true;
+        }
+
+        QMessageBox::StandardButton ret = QMessageBox::warning(this, tr("Pending modifications"),
+                                                               tr("Unsaved changes.\n"
+                                                                  "Do you want to save them before leaving ?"),
+                                                               QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+
+        if (ret == QMessageBox::Save) {
+            onSave();
+            return true;
+        } else if (ret == QMessageBox::Cancel) {
+            return false;
+        }
+
+        return true;
+    }
 
 void MainWindow::closeEvent(QCloseEvent *event)
-{
-    event->accept();
-}
+    {
+        if (checkUnsavedChanges()) {
+            event->accept();
+        } else {
+            event->ignore();
+        }
+    }
 
 void MainWindow::retranslateUi()
 {
@@ -182,6 +192,27 @@ void MainWindow::onDeleteStudent()
 
 void MainWindow::onSaveStudent()
 {
+    int index = liste->currentRow();
+    if (index < 0) return;
+
+    Student s = studentManager.getStudent(index);
+
+    s.setLastName(lastName->text());
+    s.setFirstName(firstName->text());
+    s.setBirthDate(birthDate->date());
+    s.setStudentId(studentId->text());
+    s.setIneNumber(ineNumber->text());
+    s.setPhoneNumber(phoneNumber->text());
+    s.setAmuEmail(amuEmail->text());
+    s.setPersonalEmail(personalEmail->text());
+    s.setPersonalAddress(personalAddress->text());
+    s.setParentAddress(parentAddress->text());
+    s.setPhotoPath(photoPath->text());
+    s.setSection(sectionFromString(section->currentText()));
+
+    studentManager.updateStudent(index, s);
+    liste->currentItem()->setText(s.getDisplayName());
+    studentManager.setModified(true);
 }
 
 void MainWindow::onAddAbsence()

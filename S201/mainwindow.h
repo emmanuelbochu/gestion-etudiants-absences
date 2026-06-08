@@ -16,6 +16,7 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QString>
+#include <QPushButton>
 
 #include "studentmanager.h"
 
@@ -37,6 +38,7 @@ private:
     QLineEdit *parentAddress;
     QLabel *photoPath;
     QComboBox *section;
+    QPushButton *btnSaveStudent;
 
     StudentManager studentManager;
     int currentIndex;
