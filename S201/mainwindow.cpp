@@ -21,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent)
     fileMenu->addAction(quitAction);
 
     connect(quitAction, &QAction::triggered, this, &QMainWindow::close);
+    connect(openJsonAction, &QAction::triggered, this, &MainWindow::onOpenJson);
+    connect(saveAction, &QAction::triggered, this, &MainWindow::onSave);
+    connect(saveAsAction, &QAction::triggered, this, &MainWindow::onSaveAs);
 
     QSplitter *splitter = new QSplitter(this);
     setCentralWidget(splitter);
@@ -98,6 +101,7 @@ void MainWindow::setupConnections()
 {
     connect(liste, &QListWidget::currentRowChanged, this, &MainWindow::onStudentSelected);
     connect(btnSaveStudent, &QPushButton::clicked, this, &MainWindow::onSaveStudent);
+
 }
 
 void MainWindow::populateDetailForm(int index)
@@ -158,6 +162,17 @@ void MainWindow::retranslateUi()
 
 void MainWindow::onOpenJson()
 {
+    if (!checkUnsavedChanges()) return;
+
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir JSON"), "", tr("Fichiers JSON (*.json)"));
+    if (fileName.isEmpty()) return;
+
+    if (studentManager.loadJson(fileName)) {
+        populateMasterList();
+        clearDetailForm();
+    } else {
+        QMessageBox::warning(this, tr("Erreur"), tr("Impossible de lire ce fichier JSON."));
+    }
 }
 
 void MainWindow::onOpenXml()
@@ -166,10 +181,26 @@ void MainWindow::onOpenXml()
 
 void MainWindow::onSave()
 {
+    QString currentPath = studentManager.getCurrentFilePath();
+    if (currentPath.isEmpty()) {
+        onSaveAs();
+    } else {
+        if (studentManager.saveJson(currentPath)) {
+            QMessageBox::information(this, tr("Succès"), tr("Fichier mis à jour."));
+        }
+    }
 }
 
 void MainWindow::onSaveAs()
 {
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Sauvegarder JSON"), "", tr("Fichiers JSON (*.json)"));
+    if (fileName.isEmpty()) return;
+
+    if (studentManager.saveJson(fileName)) {
+        QMessageBox::information(this, tr("Succès"), tr("Fichier sauvegardé avec succès."));
+    } else {
+        QMessageBox::warning(this, tr("Erreur"), tr("Impossible de sauvegarder le fichier."));
+    }
 }
 
 void MainWindow::onStudentSelected(int index)
