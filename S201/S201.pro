@@ -14,17 +14,16 @@ SOURCES += \
     mainwindow.cpp \
     section.cpp \
     student.cpp \
-    xmlmanager.cpp
+    studentmanager.cpp
 
 HEADERS += \
     absence.h \
     mainwindow.h \
     section.h \
     student.h \
-    xmlmanager.h
+    studentmanager.h
 
-TRANSLATIONS += \
-    S201_fr_FR.ts
+TRANSLATIONS +=
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -32,3 +31,4 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+QMAKE_CXXFLAGS += -Wno-error=implicit-function-declaration
