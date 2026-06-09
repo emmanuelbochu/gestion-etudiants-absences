@@ -11,12 +11,16 @@
 #include <QSplitter>
 #include <QCloseEvent>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QFormLayout>
 #include <QDateEdit>
 #include <QComboBox>
 #include <QLabel>
 #include <QString>
 #include <QPushButton>
+#include <QInputDialog>
+#include <QTableWidget>
+#include <QHeaderView>
 
 #include "studentmanager.h"
 
@@ -39,9 +43,16 @@ private:
     QLabel *photoPath;
     QComboBox *section;
     QPushButton *btnSaveStudent;
+    QPushButton *btnAddStudent;
+    QPushButton *btnDeleteStudent;
+    QPushButton *btnLoadPhoto;
+
+    QTableWidget *absencesTable;
+    QPushButton *btnAddAbsence;
+    QPushButton *btnEditAbsence;
+    QPushButton *btnDeleteAbsence;
 
     StudentManager studentManager;
-    int currentIndex;
 
     void setupConnections();
     void populateMasterList();
@@ -62,12 +73,12 @@ private slots:
     void onDeleteStudent();
     void onSaveStudent();
     void onAddAbsence();
-    void onEditAbsence(int index);
-    void onDeleteAbsence(int index);
+    void onEditAbsence();
+    void onDeleteAbsence();
     void onLoadPhoto();
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 };
-#endif // MAINWINDOW_H
+#endif
