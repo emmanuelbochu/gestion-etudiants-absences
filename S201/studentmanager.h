@@ -43,9 +43,6 @@ public:
     // Utilitaires de gestion de conteneur
     int count() const;
     void clear();
-    
-    // Génère automatiquement les fiches exigées pour les tests
-    void populateWithDefaultTestData();
 };
 
 #endif // STUDENTMANAGER_H

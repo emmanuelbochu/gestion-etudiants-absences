@@ -125,11 +125,9 @@ MainWindow::MainWindow(QWidget *parent)
     layoutDetail->addRow("",                     absenceButtonsLayout);
     layoutDetail->addRow(btnSaveStudent);
 
-    // on remplit la liste avec des données de test pour pas avoir une app vide au démarrage
-    studentManager.populateWithDefaultTestData();
     populateMasterList();
     setupConnections();
-    resize(900, 600); // taille par défaut de la fenêtre
+    resize(900, 600);
 }
 
 // destructeur (Qt gère la mémoire des widgets fils automatiquement)
