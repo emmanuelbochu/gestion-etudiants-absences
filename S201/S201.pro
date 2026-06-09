@@ -31,4 +31,6 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-QMAKE_CXXFLAGS += -Wno-error=implicit-function-declaration
+macx {
+    QMAKE_CXXFLAGS += -Wno-error=implicit-function-declaration
+}
