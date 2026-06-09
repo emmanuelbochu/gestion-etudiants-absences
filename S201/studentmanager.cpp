@@ -49,13 +49,10 @@ void StudentManager::clear() {
 
 // --- Filtrage Regex avancé ---
 QList<int> StudentManager::filter(QString pattern) {
-    // Configuration de l'expression régulière en ignorant la casse (CaseInsensitive)
     QList<int> matchingIndices;
     QRegularExpression regex(pattern, QRegularExpression::CaseInsensitiveOption);
 
-    // Parcours de l'ensemble du conteneur pour trouver les correspondances
     for (int i = 0; i < students.size(); ++i) {
-        // Le filtrage s'applique sur le texte affiché (Nom, prénom ou Numéro d'étudiant)
         if (students[i].getDisplayName().contains(regex)) {
             matchingIndices.append(i);
         }
@@ -69,9 +66,8 @@ bool StudentManager::loadJson(QString path) {
     if (!file.open(QIODevice::ReadOnly)) return false;
 
     QByteArray data = file.readAll();
-    // Analyse de la structure syntaxique du document JSON
     QJsonDocument doc = QJsonDocument::fromJson(data);
-    if (!doc.isArray()) return false; // La racine doit obligatoirement être un tableau JSON
+    if (!doc.isArray()) return false;
 
     students.clear();
     QJsonArray array = doc.array();
@@ -80,21 +76,19 @@ bool StudentManager::loadJson(QString path) {
     }
 
     currentFilePath = path;
-    modified = false; // Réinitialisation du flag de modification suite au chargement réussi
+    modified = false;
     return true;
 }
 
 bool StudentManager::saveJson(QString path) {
     QFile file(path);
-    if (!file.open(QIODevice::WriteOnly)) return false; // Erreur d'ouverture en écriture
+    if (!file.open(QIODevice::WriteOnly)) return false;
 
     QJsonArray array;
-    // Sérialisation de toutes les entités du modèle
     for (const Student &s : students) {
         array.append(s.toJson());
     }
 
-    // Encapsulation et conversion brute en chaîne de texte exploitable
     QJsonDocument doc(array);
     file.write(doc.toJson());
     currentFilePath = path;
@@ -114,10 +108,8 @@ bool StudentManager::loadXml(QString path) {
     if (root.tagName() != "students") return false;
 
     students.clear();
-    // Extraction de la liste de toutes les balises enfants nommées <student>
     QDomNodeList list = root.elementsByTagName("student");
     for (int i = 0; i < list.size(); ++i) {
-        // Reconstruction de l'objet Student d'après le nœud XML courant
         students.append(Student::fromXml(list.at(i).toElement()));
     }
 
@@ -139,7 +131,7 @@ bool StudentManager::saveXml(QString path) {
     }
 
     QTextStream stream(&file);
-    doc.save(stream, 4); // Indentation propre de 4 espaces
+    doc.save(stream, 4);
     currentFilePath = path;
     modified = false;
     return true;
@@ -148,7 +140,7 @@ bool StudentManager::saveXml(QString path) {
 void StudentManager::populateWithDefaultTestData() {
     students.clear();
 
-    // 1. Fiche  exemple de Maxence Mine
+    // 1. Fiche exemple de Maxence Mine
     Student s1("Mine", "Maxence", "22501432");
     s1.setBirthDate(QDate(2007, 4, 11));
     s1.setIneNumber("1105948869L");
@@ -272,4 +264,127 @@ void StudentManager::populateWithDefaultTestData() {
     s10.setParentAddress("Route de Beaucaire, 30000 Nîmes");
     s10.setSection(Section::MMI_BUT_3);
     students.append(s10);
+
+    // 11. Fiche 11
+    Student s11("Lemoine", "Arthur", "22501111");
+    s11.setBirthDate(QDate(2006, 1, 15));
+    s11.setIneNumber("7059483829K");
+    s11.setPhoneNumber("0612345678");
+    s11.setAmuEmail("arthur.lemoine@etu.univ-amu.fr");
+    s11.setPersonalEmail("arthur.lmn@gmail.com");
+    s11.setPersonalAddress("Rue des Carmes, 13200 Arles");
+    s11.setParentAddress("Avenue Victor Hugo, 84000 Avignon");
+    s11.setSection(Section::INFO_BUT_1);
+    students.append(s11);
+
+    // 12. Fiche 12
+    Student s12("Blanc", "Julie", "22402222");
+    s12.setBirthDate(QDate(2005, 5, 20));
+    s12.setIneNumber("8160594930L");
+    s12.setPhoneNumber("0798765432");
+    s12.setAmuEmail("julie.blanc@etu.univ-amu.fr");
+    s12.setPersonalEmail("jblanc05@hotmail.fr");
+    s12.setPersonalAddress("Boulevard Emile Combes, 13200 Arles");
+    s12.setParentAddress("Boulevard Emile Combes, 13200 Arles");
+    s12.setSection(Section::INFO_BUT_2);
+    s12.addAbsence(Absence(QDate(2025, 10, 15), true, "Problème de transport"));
+    students.append(s12);
+
+    // 13. Fiche 13
+    Student s13("Perrin", "Lucas", "22303333");
+    s13.setBirthDate(QDate(2004, 8, 30));
+    s13.setIneNumber("9271605041M");
+    s13.setPhoneNumber("0645678912");
+    s13.setAmuEmail("lucas.perrin@etu.univ-amu.fr");
+    s13.setPersonalEmail("l.perrin.dev@gmail.com");
+    s13.setPersonalAddress("Chemin des Moines, 13200 Arles");
+    s13.setParentAddress("Route de Nîmes, 30129 Manduel");
+    s13.setSection(Section::INFO_BUT_3);
+    students.append(s13);
+
+    // 14. Fiche 14
+    Student s14("Rousseau", "Camille", "22504444");
+    s14.setBirthDate(QDate(2006, 12, 12));
+    s14.setIneNumber("0382716152N");
+    s14.setPhoneNumber("0756473829");
+    s14.setAmuEmail("camille.rousseau@etu.univ-amu.fr");
+    s14.setPersonalEmail("cam.rousseau@outlook.com");
+    s14.setPersonalAddress("Rue de la Roquette, 13200 Arles");
+    s14.setParentAddress("Rue de la Roquette, 13200 Arles");
+    s14.setSection(Section::MMI_BUT_1);
+    students.append(s14);
+
+    // 15. Fiche 15
+    Student s15("Richard", "Nicolas", "22405555");
+    s15.setBirthDate(QDate(2005, 2, 28));
+    s15.setIneNumber("1493827263O");
+    s15.setPhoneNumber("0687654321");
+    s15.setAmuEmail("nicolas.richard@etu.univ-amu.fr");
+    s15.setPersonalEmail("nico.richard.mmi@gmail.com");
+    s15.setPersonalAddress("Place de la République, 13200 Arles");
+    s15.setParentAddress("Avenue Georges Pompidou, 30900 Nîmes");
+    s15.setSection(Section::MMI_BUT_2);
+    s15.addAbsence(Absence(QDate(2026, 1, 10), false, ""));
+    students.append(s15);
+
+    // 16. Fiche 16
+    Student s16("Guerin", "Manon", "22306666");
+    s16.setBirthDate(QDate(2004, 10, 5));
+    s16.setIneNumber("2504938374P");
+    s16.setPhoneNumber("0711223344");
+    s16.setAmuEmail("manon.guerin@etu.univ-amu.fr");
+    s16.setPersonalEmail("manon.guerin.pro@yahoo.fr");
+    s16.setPersonalAddress("Quartier de l'Hauture, 13200 Arles");
+    s16.setParentAddress("Rue Thiers, 84000 Avignon");
+    s16.setSection(Section::MMI_BUT_3);
+    students.append(s16);
+
+    // 17. Fiche 17
+    Student s17("Marchand", "Leo", "22507777");
+    s17.setBirthDate(QDate(2007, 3, 22));
+    s17.setIneNumber("3615049485Q");
+    s17.setPhoneNumber("0634567890");
+    s17.setAmuEmail("leo.marchand@etu.univ-amu.fr");
+    s17.setPersonalEmail("leo.mchd@gmail.com");
+    s17.setPersonalAddress("Rue Tour de Fabre, 13200 Arles");
+    s17.setParentAddress("Rue Tour de Fabre, 13200 Arles");
+    s17.setSection(Section::INFO_BUT_1);
+    students.append(s17);
+
+    // 18. Fiche 18
+    Student s18("Clement", "Clara", "22408888");
+    s18.setBirthDate(QDate(2005, 9, 14));
+    s18.setIneNumber("4726150596R");
+    s18.setPhoneNumber("0765432109");
+    s18.setAmuEmail("clara.clement@etu.univ-amu.fr");
+    s18.setPersonalEmail("clara.clmt@hotmail.com");
+    s18.setPersonalAddress("Avenue des Alyscamps, 13200 Arles");
+    s18.setParentAddress("Boulevard de Prague, 30000 Nîmes");
+    s18.setSection(Section::INFO_BUT_2);
+    students.append(s18);
+
+    // 19. Fiche 19
+    Student s19("Colin", "Antoine", "22509999");
+    s19.setBirthDate(QDate(2006, 7, 7));
+    s19.setIneNumber("5837261607S");
+    s19.setPhoneNumber("0609876543");
+    s19.setAmuEmail("antoine.colin@etu.univ-amu.fr");
+    s19.setPersonalEmail("antoine.c.dev@gmail.com");
+    s19.setPersonalAddress("Chemin de la Plaine, 13200 Arles");
+    s19.setParentAddress("Chemin de la Plaine, 13200 Arles");
+    s19.setSection(Section::MMI_BUT_1);
+    s19.addAbsence(Absence(QDate(2026, 4, 18), true, "Convocation administrative"));
+    students.append(s19);
+
+    // 20. Fiche 20
+    Student s20("Vidal", "Juliette", "22300000");
+    s20.setBirthDate(QDate(2004, 11, 25));
+    s20.setIneNumber("6948372718T");
+    s20.setPhoneNumber("0787654321");
+    s20.setAmuEmail("juliette.vidal@etu.univ-amu.fr");
+    s20.setPersonalEmail("ju.vidal@outlook.fr");
+    s20.setPersonalAddress("Rue Condorcet, 13200 Arles");
+    s20.setParentAddress("Route de Marseille, 13080 Aix-en-Provence");
+    s20.setSection(Section::MMI_BUT_3);
+    students.append(s20);
 }
