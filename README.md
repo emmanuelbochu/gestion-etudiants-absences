@@ -4,6 +4,8 @@ Application de bureau (C++ / Qt) pour gérer une liste d'étudiants : fiches dé
 
 Projet réalisé en 1re année de BUT Informatique, **à deux** avec Maxence Mine. Stack : C++17, Qt 6 (Widgets, XML).
 
+![Capture de l'application : liste d'étudiants fictifs, fiche de Camille Dupont et tableau de ses absences](docs/capture.png)
+
 ## Fonctionnalités
 
 - Liste des étudiants avec **filtre** de recherche.
@@ -20,6 +22,10 @@ Projet réalisé en 1re année de BUT Informatique, **à deux** avec Maxence Min
 | Classes de données et logique : `Student`, `Section`, `Absence`, `StudentManager` (chargement et sauvegarde JSON/XML, filtre) | **Maxence Mine** (écrit pour l'essentiel) |
 
 La répartition vient de l'historique git du dépôt (24 commits : 16 de Emmanuel, 8 de Maxence). Le diagramme UML du projet est dans [`docs/diagramme-uml.png`](docs/diagramme-uml.png).
+
+## Usage de l'IA
+
+Je ne me souviens plus précisément de ce que l'IA a fait sur ce projet, donc je ne l'affirme pas ici. Ma part est celle décrite dans la répartition ci-dessus, et elle se vérifie dans l'historique git.
 
 ## Compiler et lancer
 
