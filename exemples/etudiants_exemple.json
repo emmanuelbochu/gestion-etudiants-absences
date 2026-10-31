@@ -1,0 +1,126 @@
+[
+    {
+        "absences": [
+            {
+                "date": "2026-03-02",
+                "justified": true,
+                "reason": "Rendez-vous médical"
+            },
+            {
+                "date": "2026-03-19",
+                "justified": false,
+                "reason": "Pas de motif fourni"
+            }
+        ],
+        "amuEmail": "camille.dupont@example.org",
+        "birthDate": "2006-03-14",
+        "firstName": "Camille",
+        "ineNumber": "0000000001X",
+        "lastName": "Dupont",
+        "parentAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalEmail": "etudiant1@example.com",
+        "phoneNumber": "06 00 00 00 01",
+        "photoPath": "",
+        "section": "Info BUT 1",
+        "studentId": "20250001"
+    },
+    {
+        "absences": [],
+        "amuEmail": "lucas.martin@example.org",
+        "birthDate": "2005-11-02",
+        "firstName": "Lucas",
+        "ineNumber": "0000000002X",
+        "lastName": "Martin",
+        "parentAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalEmail": "etudiant2@example.com",
+        "phoneNumber": "06 00 00 00 02",
+        "photoPath": "",
+        "section": "Info BUT 1",
+        "studentId": "20250002"
+    },
+    {
+        "absences": [
+            {
+                "date": "2026-04-08",
+                "justified": true,
+                "reason": "Certificat médical"
+            }
+        ],
+        "amuEmail": "ines.bernard@example.org",
+        "birthDate": "2006-07-21",
+        "firstName": "Inès",
+        "ineNumber": "0000000003X",
+        "lastName": "Bernard",
+        "parentAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalEmail": "etudiant3@example.com",
+        "phoneNumber": "06 00 00 00 03",
+        "photoPath": "",
+        "section": "Info BUT 2",
+        "studentId": "20250003"
+    },
+    {
+        "absences": [
+            {
+                "date": "2026-02-11",
+                "justified": false,
+                "reason": "Retard important"
+            },
+            {
+                "date": "2026-02-25",
+                "justified": true,
+                "reason": "Transport en grève"
+            }
+        ],
+        "amuEmail": "hugo.petit@example.org",
+        "birthDate": "2006-01-30",
+        "firstName": "Hugo",
+        "ineNumber": "0000000004X",
+        "lastName": "Petit",
+        "parentAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalEmail": "etudiant4@example.com",
+        "phoneNumber": "06 00 00 00 04",
+        "photoPath": "",
+        "section": "Info BUT 2",
+        "studentId": "20250004"
+    },
+    {
+        "absences": [],
+        "amuEmail": "lea.roux@example.org",
+        "birthDate": "2005-09-09",
+        "firstName": "Léa",
+        "ineNumber": "0000000005X",
+        "lastName": "Roux",
+        "parentAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalEmail": "etudiant5@example.com",
+        "phoneNumber": "06 00 00 00 05",
+        "photoPath": "",
+        "section": "Info BUT 1",
+        "studentId": "20250005"
+    },
+    {
+        "absences": [
+            {
+                "date": "2026-03-27",
+                "justified": true,
+                "reason": "Entretien de stage"
+            }
+        ],
+        "amuEmail": "nathan.moreau@example.org",
+        "birthDate": "2006-05-27",
+        "firstName": "Nathan",
+        "ineNumber": "0000000006X",
+        "lastName": "Moreau",
+        "parentAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalAddress": "1 rue de l'Exemple, 00000 Ville",
+        "personalEmail": "etudiant6@example.com",
+        "phoneNumber": "06 00 00 00 06",
+        "photoPath": "",
+        "section": "Info BUT 3",
+        "studentId": "20250006"
+    }
+]
